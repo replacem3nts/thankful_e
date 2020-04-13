@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_174931) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
-    t.string "content"
+    t.text "content"
     t.boolean "private"
     t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_174931) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
     t.bigint "location_id", null: false
     t.string "phone"
