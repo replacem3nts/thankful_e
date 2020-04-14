@@ -1,0 +1,8 @@
+<h1>View Thanks</h1>
+<h2><%= @post.title %></h2>
+<h2>By: <%= @post.user.username %></h2>
+<p><%= @post.content %></p>
+<% @post.categories.each do |c| %>
+    <p><%= c.name%></p>
+<% end %>
+<%= button_to "Delete Post", @post, method: :delete, class: "button" %>

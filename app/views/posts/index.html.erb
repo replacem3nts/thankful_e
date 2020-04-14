@@ -1,0 +1,10 @@
+<h1>All Posts</h1>
+<ul>
+    <% @posts.each do |p| %>
+        <li>
+            <%= link_to p.title, post_path(p) %><br>
+            <%= truncate(p.content, length: 75)%><br>
+            <%= "🙏 #{p.likes_count}" %>
+        </li>
+    <% end %>
+</ul>

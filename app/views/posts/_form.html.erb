@@ -1,0 +1,21 @@
+<%= form_for(@post) do |p| %>
+    <%= p.label :user_id, "User"%>
+    <%= p.collection_select :user_id, @users, :id, :username, prompt: 'Select User' %><br><br>
+    <%= p.label :private, "Would you like this post to be:"%>
+    <%= p.radio_button :private, false, checked: true %>
+    <%= p.label :private_false, "Public" %>
+    <%= p.radio_button :private, true %>
+    <%= p.label :private_true, "Private" %><br><br>
+    <%= p.label :title %>
+    <%= p.text_field :title %><br><br>
+    <%= p.label :content %>
+    <%= p.text_area :content %><br><br>
+    <p>Optional Fields:</p><br>
+    <%= p.label :location_id, "Location"%>
+    <%= p.collection_select :location_id, @locations, :id, :state, prompt: 'Select A State' %><br><br>
+    <%= p.label :category_id, "Categories"%>
+    <%= p.fields_for :categories do |cat| %>
+        <%= cat.text_field :name %>
+    <% end %>
+    <%= p.submit "Submit Thanks!"%>
+<% end %>
