@@ -1,0 +1,26 @@
+<% if @errors %>
+    <ul>
+        <% @errors.each do |e| %>
+            <li class="error" ><%= e %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_for @user do |u| %>
+    <%= u.label :username %>
+    <%= u.text_field :username, required: true %><br>
+
+    <%= u.label :email%>
+    <%= u.email_field :email, required: true %><br>
+
+    <%= u.label :password%>
+    <%= u.password_field :password, required: true %><br>
+    
+    <%= u.label :location_id, "State"%>
+    <%= u.collection_select :location_id, @locations, :id, :state, prompt: "Select a State" %><br>
+    
+    <%= u.label :phone %>
+    <%= u.telephone_field :phone, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}" %><br>
+    
+    <%= u.submit "Create New Account!"%>
+<% end %>

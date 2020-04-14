@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  has_secure_password
   belongs_to :location
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_secure_password
+  validates :username, :email, presence: true
+  validates :password, confirmation: true
 end

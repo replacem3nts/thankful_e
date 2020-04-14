@@ -1,2 +1,13 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Login</h1>
+<% if @error %>
+    <ul>
+            <li class="error" ><%= @error %></li>
+    </ul>
+<% end %>
+<%= form_tag "/login", method: "POST", class: 'form' do %>
+    <%= label_tag :username%><br>
+    <%= text_field_tag :username %><br><br>
+    <%= label_tag :password%><br>
+    <%= password_field_tag :password %><br><br>
+    <%= submit_tag "Log In" %>
+<% end %>

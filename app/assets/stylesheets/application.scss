@@ -1,0 +1,68 @@
+@import "bootstrap";
+
+@grid-columns:              12;
+@grid-gutter-width:         30px;
+@grid-float-breakpoint:     768px;
+
+#viewer {
+    background-color: #D0E0E4;
+    color: #181F97;
+    padding-top: 1vw;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2 {
+    font-size: 3em;
+    text-align: center;
+    margin: 1%;
+}
+
+#main {
+    background-color: #F2F466;
+    margin-top: 6%;
+    margin-bottom: 4%;
+    margin-right: 2%;
+    padding: 20px;
+    height: 89vh;
+    overflow: auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    background-color: #DAF2F8;
+    border: 3px solid #FFFFFF;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#nav {
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 3%;
+}
+
+#nav li:hover{
+    background-color: #181F97;
+}
+#nav li:hover a{
+    color: #FFFFFF;
+}
+
+#nav li {
+    margin-bottom: 0px;
+    border: 1px solid #FFFFFF;
+}
+
+#likes_count {
+    font-size: 2em;
+    right: 1px;
+}
