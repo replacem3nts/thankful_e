@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :authorize, only: [:edit]
 
     def new
         @user = User.new
@@ -26,6 +27,9 @@ class UsersController < ApplicationController
     end
 
     def destroy
+    end
+
+    def about
     end
 
     private

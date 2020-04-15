@@ -1,0 +1,11 @@
+<span id="index_nav">
+<%= form_tag query_path do %>
+    <%= select_tag 'query[Since]', options_for_select(Post.check_dates), onchange: 'this.form.submit()', prompt: "View by Time Period" %>
+<% end %>
+<%= form_tag query_path do %>
+    <%= select_tag 'query[Location]', options_from_collection_for_select(Location.all, :id, :state), onchange: 'this.form.submit()', prompt: "View by State" %>
+<% end %>
+<%= form_tag query_path do %>
+    <%= select_tag 'query[Category]', options_from_collection_for_select(Category.all, :id, :name), onchange: 'this.form.submit()', prompt: "View by Category" %>
+<% end %>
+</span>

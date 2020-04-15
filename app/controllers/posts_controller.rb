@@ -1,6 +1,23 @@
 class PostsController < ApplicationController
+# Index primarily driven by navbar which sends query details to 'post query' then returns them to index in a flash and uses Post.record_builder. Navigating straight to index will return today's posts sorted by like count.
     def index
-        @posts = Post.sort_likes
+        @params = flash[:query] ||= {}
+        case @params.length
+        when 0
+            @header = "All Thanks" 
+            @posts = Post.record_builder()
+        when 1
+            @finder = @params.keys.first
+            @value = @params.values.first
+            @finder_name = get_name(@finder, @value)
+            @posts = Post.record_builder(@finder, @value)
+        when 2
+            @finder = @params.keys.first
+            @value = @params.values.first
+            @sorter = @params.keys.second
+            @finder_name = get_name(@finder, @value)
+            @posts = Post.record_builder(@finder, @value, @sorter)
+        end
     end
 
     def new
@@ -39,7 +56,31 @@ class PostsController < ApplicationController
         redirect_to posts_path
     end
 
+    def by_user
+        @user = get_user
+        @posts = @user.posts
+    end
+
+    def query
+        flash[:query] = params[:query]
+        redirect_to posts_path
+    end
+
     private
+
+    def get_name(finder, value)
+        if finder == "Location"
+            "in #{finder.constantize.find(value).state}"
+        elsif finder == "Category"
+            " in #{finder.constantize.find(value).name}"
+        else
+            "since #{value.to_datetime.strftime("%B %d, %Y")}"
+        end
+    end
+
+    def get_user
+        User.find(params[:id])
+    end
 
     def get_post
         Post.find(params[:id])

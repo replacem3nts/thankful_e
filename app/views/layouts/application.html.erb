@@ -16,13 +16,21 @@
         <div><h1>🙏 Thankful-e</h1></div>
         <div id="nav">
           <ul>
-            <li><a href="">About Thankful-e</a></li>
-            <li><a href="">Thanks Digest</a></li>
-            <li><a href="">My Thanks</a></li>
+            <li><a href="/about">About Thankful-e</a></li>
+            <li><a href="/posts">Thanks Digest</a></li>
+            <% if logged_in? %>
+              <li><%= link_to "My Thanks", user_posts_path(user_logged_in.id) %></li>
+            <% end %>
             <li><a href="">Give Thanks</a></li>
             <li><a href="">Thanks I've 🙏</a></li>
             <li><a href="">Settings</a></li>
           </ul>
+        </div>
+        <div>
+          <h2><%= logged_in? ? "Hi, #{user_logged_in.username}!" : (link_to 'Log In', login_path) %></h2>
+        </div>
+        <div>
+          <%= button_to "Log Off", logout_path, class: "button" %>
         </div>
       </div>
       <div class="col-md-8">
