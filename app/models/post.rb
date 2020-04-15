@@ -24,10 +24,10 @@ class Post < ApplicationRecord
   def self.check_dates
     d = DateTime.now
     [
-      ["Last Week", (d - 7)],
-      ["Last Two Weeks", (d - 14)],
-      ["Last Month", (d << 1)],
-      ["Last 3 Months", (d << 3)]
+      ["The Past Week", (d - 7)],
+      ["The Past Two Weeks", (d - 14)],
+      ["The Past Month", (d << 1)],
+      ["The Past 3 Months", (d << 3)]
     ]
   end
   # Using named scopes stored in class vars above, takes arguments (find by some type, arg for that finder, sort method) and queries the db for those results.

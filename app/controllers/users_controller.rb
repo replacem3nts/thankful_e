@@ -18,9 +18,11 @@ class UsersController < ApplicationController
     end
 
     def show
+        @user = get_user
     end
 
     def edit
+        @user = user_logged_in
     end
 
     def update
@@ -33,6 +35,10 @@ class UsersController < ApplicationController
     end
 
     private
+
+    def get_user
+        User.find(params[:id])
+    end
 
     def get_locations
         Location.all

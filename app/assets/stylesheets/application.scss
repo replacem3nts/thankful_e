@@ -10,6 +10,11 @@
     padding-top: 1vw;
 }
 
+a {
+    color: #181F97;
+    text-decoration: underline;
+}
+
 h1 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
@@ -20,18 +25,75 @@ h2 {
     margin: 1%;
 }
 
+.user_greeting_logout {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    right: 30px;
+    width: 450px;
+    height: 50px;
+    font-size: 26px;
+    font-weight: 800;
+    font-family: monospace;
+    padding-top: 5px;
+}
+
 #main {
     background-color: #F2F466;
-    margin-top: 6%;
-    margin-bottom: 4%;
+    margin-top: 6vh;
+    margin-bottom: 2vh;
     margin-right: 2%;
     padding: 20px;
-    height: 89vh;
-    overflow: auto;
+    height: 91vh;
 }
 
 #index_nav {
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    min-height: 40px;
+    background-color: #DAF2F8;
+    border: 3px solid #181F97;
+    color: #181F97;
+}
+
+select {
+    display: inline-block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 550;
+	color: #181F97;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    padding-left: .7em;
+	border: 3px solid #FFFFFF;
+	appearance: none;
+    background-color: #DAF2F8;
+}
+
+#todays_thanks {
+    order: 1;
+}
+#date_select {
+    order: 2;
+}
+#location_select {
+    order: 3;
+}
+#category_select {
+    order: 4;
+}
+
+#index_body {
+    height: 80%;
+    overflow: auto;
+
 }
 
 ul {

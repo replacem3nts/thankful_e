@@ -1,11 +1,25 @@
 <span id="index_nav">
-<%= form_tag query_path do %>
-    <%= select_tag 'query[Since]', options_for_select(Post.check_dates), onchange: 'this.form.submit()', prompt: "View by Time Period" %>
-<% end %>
-<%= form_tag query_path do %>
-    <%= select_tag 'query[Location]', options_from_collection_for_select(Location.all, :id, :state), onchange: 'this.form.submit()', prompt: "View by State" %>
-<% end %>
-<%= form_tag query_path do %>
-    <%= select_tag 'query[Category]', options_from_collection_for_select(Category.all, :id, :name), onchange: 'this.form.submit()', prompt: "View by Category" %>
-<% end %>
+    <span id="todays_thanks">
+        <%= link_to "Today's Thanks", posts_path %>
+    </span>
+    <span id="date_select">
+        <%= form_tag query_path do %>
+            <%= label_tag "Thanks by: "%>
+            <%= select_tag 'query[Since]', options_for_select(Post.check_dates), onchange: 'this.form.submit()', prompt: "Time Period" %>
+        <% end %>
+    </span>
+
+    <span id="location_select">
+        <%= form_tag query_path do %>
+            <%= label_tag "Thanks by: "%>
+            <%= select_tag 'query[Location]', options_from_collection_for_select(Location.all, :id, :state), onchange: 'this.form.submit()', prompt: "State" %>
+        <% end %>
+    </span>
+
+    <span id="category_select">
+        <%= form_tag query_path do %>
+            <%= label_tag "Thanks by: "%>
+            <%= select_tag 'query[Category]', options_from_collection_for_select(Category.all, :id, :name), onchange: 'this.form.submit()', prompt: "Category" %>
+        <% end %>
+    </span>
 </span>

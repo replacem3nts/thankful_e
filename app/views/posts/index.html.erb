@@ -1,19 +1,23 @@
-<%if @header %>
-    <h2><%= @header %></h2>
-<% else %>
-    <h2>Thanks <%= @finder_name %></h2>
-<% end %>
-<%= render 'postnav' %>
-<% if @posts.present? %>
-<ul>
-    <% @posts.each do |p| %>
-        <li>
-            <span><%= link_to p.title, post_path(p) %><br>
-            <%= truncate(p.content, length: 75)%></span>
-            <span id="likes_count"><%= "🙏 #{p.likes_count}" %></span>
-        </li>
+<div id="index_header">
+    <%if @header %>
+        <h2><%= @header %></h2>
+    <% else %>
+        <h2>Thanks <%= @finder_name %></h2>
     <% end %>
-</ul>
-<% else %>
-    <p>Sorry, there are no thanks in <%= @finder_name %> </p>
-<% end %>
+    <%= render 'postnav' %>
+</div>
+<div id="index_body">
+<% if @posts.present? %>
+    <ul>
+        <% @posts.each do |p| %>
+            <li>
+                <span><%= link_to p.title, post_path(p) %><br>
+                <%= truncate(p.content, length: 75)%></span>
+                <span id="likes_count"><%= "🙏 #{p.likes_count}" %></span>
+            </li>
+        <% end %>
+    </ul>
+    <% else %>
+        <p id="empty_error">Sorry, there are no thanks in <%= @finder_name %> </p>
+    <% end %>
+</div>
