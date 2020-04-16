@@ -1,0 +1,9 @@
+<% if logged_in? %>
+    <% if like %>
+      <%= button_to "🙏", unlike_post_path, method: :delete, params: {"like[id]"=>post.id} %>
+    <% else %>
+      <%= button_to "🙏", like_post_path, params: {"like[post_id]"=>post.id} %>
+    <% end %>
+<% else %>
+      <%= button_to "🙏", login_path %>
+<% end %>

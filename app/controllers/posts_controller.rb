@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-# Index primarily driven by navbar which sends query details to 'post query' then returns them to index in a flash and uses Post.record_builder. Navigating straight to index will return today's posts sorted by like count.
+    helper_method :liked?, :post_like
+
+    # Index primarily driven by navbar which sends query details to 'post query' then returns them to index in a flash and uses Post.record_builder. Navigating straight to index will return today's posts sorted by like count.
     def index
         @params = flash[:query] ||= {}
         case @params.length
@@ -54,11 +56,6 @@ class PostsController < ApplicationController
         @post = get_post
         @post.destroy
         redirect_to posts_path
-    end
-
-    def by_user
-        @user = get_user
-        @posts = @user.posts
     end
 
     def query

@@ -4,12 +4,14 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :postcats, dependent: :destroy
   has_many :categories, through: :postcats
+  has_many :likers, through: :likes, source: :user
+  accepts_nested_attributes_for :categories
+
   scope :sort_by_likes, -> {order('likes_count desc')}
   scope :sort_by_newest, -> {order('created_at desc')}
   scope :find_by_category, lambda {|category_id| joins(:postcats).where(['category_id = ?', category_id])}
   scope :find_by_location, lambda {|location_id| where(['location_id = ?', location_id])}
   scope :find_since_date, lambda {|created_at| where(['created_at > ?', created_at])}
-  accepts_nested_attributes_for :categories
   
   @@finders = {
     'Since'=>:find_since_date,
@@ -41,4 +43,13 @@ class Post < ApplicationRecord
       self.categories << category
     end
   end
+
+  def post_like(user)
+    likes.where(user_id: user.id).first
+  end
+
+  def liked?(user)
+    !!post_like(user)
+  end
+
 end

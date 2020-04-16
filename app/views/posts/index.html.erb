@@ -9,11 +9,14 @@
 <div id="index_body">
 <% if @posts.present? %>
     <ul>
-        <% @posts.each do |p| %>
+        <% @posts.each do |post| %>
             <li>
-                <span><%= link_to p.title, post_path(p) %><br>
-                <%= truncate(p.content, length: 75)%></span>
-                <span id="likes_count"><%= "🙏 #{p.likes_count}" %></span>
+                <span><%= link_to post.title, post_path(post) %><br>
+                <%= truncate(post.content, length: 75)%></span>
+                <span id="likes_count">
+                    <%= render partial: "like", locals: {post: post, like: user_logged_in.liked_posts.include?(post)} %>
+                    <%= post.likes_count %>
+                </span>
             </li>
         <% end %>
     </ul>

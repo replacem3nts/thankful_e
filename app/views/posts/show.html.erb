@@ -5,4 +5,7 @@
 <% @post.categories.each do |c| %>
     <span><%= link_to "#{c.name}", categories_path %></span><br>
 <% end %><br>
+
+<%= render partial: "like", locals: {post: @post, like: user_logged_in.liked_posts.include?(@post)} %>
+<%= @post.likes_count%>
 <%= button_to "Delete Post", @post, method: :delete, class: "button" %>

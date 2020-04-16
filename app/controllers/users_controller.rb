@@ -34,6 +34,16 @@ class UsersController < ApplicationController
     def about
     end
 
+    def posts
+        @user = get_user
+        @posts = @user.posts
+    end
+
+    def liked
+        @user = get_user
+        @posts = @user.liked_posts
+    end
+
     private
 
     def get_user

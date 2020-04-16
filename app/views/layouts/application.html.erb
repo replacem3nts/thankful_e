@@ -21,7 +21,7 @@
             <% if logged_in? %>
               <li><%= link_to "My Thanks", user_posts_path(user_logged_in.id) %></li>
               <li><a href="">Give Thanks</a></li>
-              <li><%= link_to "Thanks I've 🙏", user_path(user_logged_in.id) %></li>
+              <li><%= link_to "Thanks I've 🙏", user_likes_path(user_logged_in.id) %></li>
               <li><%= link_to 'My Account', user_path(user_logged_in.id) %></li>
             <% else %>
               <li><%= link_to 'Give Thanks', new_user_path %></li>
@@ -34,7 +34,7 @@
           <% if !logged_in? %> 
               <%= link_to 'Log In', login_path %>
             <% else %> 
-              <%= "Hi, #{user_logged_in.username.strip}!"%>
+              <%= link_to "Hi, #{user_logged_in.username}!", user_path(user_logged_in) %>
             <% end %>
           <%= button_to "Log Off", logout_path, class: "button" %>
         </span>
