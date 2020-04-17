@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :user_logged_in, :logged_in?, :authorize
+    helper_method :user_logged_in, :logged_in?, :authorize, :last_ten_posts
     
     def user_logged_in
         if session[:user_id]
@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
     def authorize
         redirect_to login_path unless logged_in?
     end
+
+end
+
+def last_ten_posts
+    @posts = Post.last_ten
 end

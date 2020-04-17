@@ -1,4 +1,5 @@
 <h2>Thanks I've 🙏</h2>
+<div class="index_body">
 <% if user_logged_in == @user %>
     <ul>
         <% @posts.each do |p| %>
@@ -11,3 +12,4 @@
     <p>You don't have permission to view this user's posts</p>
     <% link_to "Back to All Thanks", posts_path %>
 <% end %>
+</div>

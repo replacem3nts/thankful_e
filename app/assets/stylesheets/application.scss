@@ -15,11 +15,15 @@ a {
     text-decoration: underline;
 }
 
-h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+#site_title a {
+    font-family: monospace;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-decoration-line: none;
 }
 
 h2 {
+    font-family: monospace;
     font-size: 3em;
     text-align: center;
     margin: 1%;
@@ -38,6 +42,10 @@ h2 {
     font-weight: 800;
     font-family: monospace;
     padding-top: 5px;
+}
+
+.user_greeting_logout a {
+    text-decoration-line: none;
 }
 
 #main {
@@ -103,11 +111,48 @@ h2 {
     flex-direction: row;
 }
 
-.profile_avatar img {
+.profile_header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile_header img {
     border-radius: 50%;
     max-width: 150px;
     height: auto;
+    margin-right: 4em;
 }
+
+.public_body {
+    background-color: #DAF2F8;
+    border: 1px solid #181F97;
+    padding: 20px;
+    margin-right: 15%;
+    margin-bottom: 30px;
+}
+
+.profile_body .label {
+    font-weight: bold !important;
+    font-size: 1.3em;
+    border: 3px solid #FFFFFF;
+    padding: 3px;
+    margin: 15px;
+}
+
+.private_body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #DAF2F8;
+    border: 1px solid #181F97;
+    padding: 20px;
+    margin-right: 15%;
+    margin-bottom: 30px;
+}
+
 
 #preview_avatar {
     margin-left: 2em;
@@ -131,9 +176,6 @@ h2 {
     margin-right: 2em;
 }
 
-#preview_likes > *{
-}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -146,6 +188,37 @@ li {
     margin-bottom: 10px;
     padding: 10px;
     box-sizing: border-box;
+}
+
+#activity {
+    position: absolute;
+    bottom: 30px;
+    align-content: center;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 3%;
+    height: 40vh;
+    overflow: auto;
+}
+
+#activity .pane {
+    background-color: #F2F466;
+    padding: 15px;
+    width: 80%;
+    font-size: .7em;
+}
+
+#activity li {
+    background-color: #F2F466;
+    border: 1px solid #181F97;
+}
+
+.pane_heaader {
+    position: absolute;
+    top: 0px;
+}
+#activity > .pane > .pane_body {
+    height: 75%;
 }
 
 #nav {

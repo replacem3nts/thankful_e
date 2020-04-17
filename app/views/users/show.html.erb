@@ -1,14 +1,27 @@
-<span class="profile_avatar"><%= image_tag(@user.avatar) %></span>
-<h2><%=@user.username%></h2>
-<span><%= @user.website%></span><br><br>
-<span>About <%=@user.username%><%= @user.bio%></span><br><br>
+<div class="user_profile">
+    <div class="profile_header">
+        <%= image_tag(@user.avatar) %>
+        <h2><%=@user.username%></h2>
+    </div>
+    <div class="profile_body">
+        <h3>Public Info</h3>
+        <div class="public_body">
+            <span class="label">Website</span><%= link_to @user.website, @user.website %></span><br><br>
+            <span class="label">Bio</span><span><%= @user.bio%></span>
+        </div>
 
-<% if user_logged_in == @user %>
-        <span>E-mail: <%= @user.email%></span><br><br>
-        <span>Location: <%= @user.location.state %></span><br><br>
-        <span>Telephone: <%= @user.phone%></span><br><br>
-
-    <%= link_to "Edit Your Account", edit_user_path(@user) %><br>
-    <%= link_to "Update Your Profile", details_path(@user) %><br>
-    <%= button_to "Delete Account", @user, method: :delete, class: "button"%>
-<% end %>
+        <h3>Private Info</h3>
+        <div class="private_body">
+        <% if user_logged_in == @user %>
+            <span><span class="label">Location</span><%= @user.location.state %></span>
+            <span><span class="label">Telephone</span><%= @user.phone%></span><br><br>
+            <span><span class="label">E-mail</span><%= @user.email%></span>
+        </div>
+    </div>
+            <div class="profile_actions">
+                <%= link_to "Edit Your Account", edit_user_path(@user) %><br><br>
+                <%= link_to "Update Your Profile", details_path(@user) %><br><br>
+                <%= button_to "Delete Account", @user, method: :delete, class: "button"%>
+            </div>
+        <% end %>
+</div>

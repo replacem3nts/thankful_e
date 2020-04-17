@@ -13,7 +13,7 @@
     <div id="viewer" class="container-fluid">
     <div class="row">
       <div class="col-md-4 text-center">
-        <div><h1> <%= link_to '🙏 Thankful-e', root_path %> </h1></div>
+        <div id="site_title"><h1> <%= link_to '🙏 Thankful-e', root_path %> </h1></div>
         <div id="nav">
           <ul>
             <li><%= link_to 'About Thankful-e', about_path %></li>
@@ -27,6 +27,9 @@
               <li><%= link_to 'Give Thanks', new_user_path %></li>
             <% end %>
           </ul>
+        </div>
+        <div id="activity">
+          <%= render partial: 'shared/activity', locals: {posts: last_ten_posts} %>
         </div>
       </div>
       <div class="col-md-8">

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :get_post, only: [:show, :create, :edit, :update, :destroy]
+    before_action :get_post, only: [:show, :edit, :update, :destroy]
     
     # Index primarily driven by navbar which sends query details to 'post<-HTTP verb query' located at bottom of the file then returns them to index in a flash and uses Post.record_builder (see post.rb for more explanation). Navigating straight to index will return today's posts sorted by like count.
     def index
@@ -30,10 +30,10 @@ class PostsController < ApplicationController
     end
     
     def create
-        @user = user_logged_in
-        post = @post.create(post_params)
+        params[:post][:user_id] = user_logged_in.id
+        post = Post.create(post_params)
         if post.valid?
-            redirect_to @post
+            redirect_to post
         else
             flash[:errors] = post.errors.full_messages
             redirect_to new_post_path
@@ -49,7 +49,6 @@ class PostsController < ApplicationController
     end
 
     def update
-        @user = user_logged_in
         params[:post][:user_id] = user_logged_in.id
         post = @post.update(post_params)
         if post

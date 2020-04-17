@@ -1,0 +1,15 @@
+<div class="pane">
+    <div id="pane_header">
+        <h4>Recent Activity:</h4>
+    </div>
+    <div id="pane_body">
+    <ul>
+    <% posts.each do |p| %>
+        <li>
+            <span class="post_intro"><%= time_ago_in_words(p.created_at).capitalize%> <%= p.user.username%> said...</span><br>
+            <span class="post_title"><%= link_to p.title, post_path(p) %><br></span>
+        </li>
+    <% end %>
+    </ul>
+    </div>
+</div>

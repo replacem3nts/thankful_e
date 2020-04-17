@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   get '/about', to: 'sessions#about'
   get '/goodbye', to: 'sessions#goodbye'
   resources :posts
-  resources :users, except: [:index, :delete]
-  delete '/users/:id', to: 'users#destroy'
+  resources :users, except: [:index]
   post '/posts/query', to: 'posts#query', as: 'query'
   get '/users/:id/details', to: 'users#details', as: 'details'
   patch '/users/:id/details', to: 'users#updatedetails'

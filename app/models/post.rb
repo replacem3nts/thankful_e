@@ -44,4 +44,8 @@ class Post < ApplicationRecord
     self.category ? self.category.name : nil
   end
 
+  def self.last_ten
+    Post.all.order(created_at: :desc).limit(10)
+  end
+
 end

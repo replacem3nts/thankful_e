@@ -27,7 +27,6 @@ class SessionsController < ApplicationController
   end
 
   def goodbye
-    sleep(3)
     redirect_to root_path
   end
 end

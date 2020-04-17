@@ -8,7 +8,6 @@
     <%= p.text_field :title %><br><br>
     <%= p.label :content %>
     <%= p.text_area :content %><br><br>
-    <p>Optional Fields:</p><br>
     <%= p.label :location_id, "Location"%>
     <%= p.collection_select :location_id, locations, :id, :state %><br><br>
     <%= p.label :category_name, "Category"%>
