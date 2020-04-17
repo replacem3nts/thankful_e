@@ -1,11 +1,11 @@
 <h2><%= @post.title %></h2>
 <h3>By: <%= @post.user.username %></h3>
 <p><%= @post.content %></p>
-<h4><%= "Tagged in #{pluralize(@post.categories.count, 'Category')}:"%></h4>
-<% @post.categories.each do |c| %>
-    <span><%= link_to "#{c.name}", categories_path %></span><br>
-<% end %><br>
+<%=%>
+<span><h4>Tagged in:</h4> <%= button_to @post.category.name.capitalize, query_path, params: {"query[Category]"=>@post.category_id} %></span>
+<span><h4>Tagged in:</h4> <%= button_to @post.location.state.capitalize, query_path, params: {"query[Location]"=>@post.location_id} %></span>
 
-<%= render partial: "like", locals: {post: @post, like: user_logged_in.liked_posts.include?(@post)} %>
+<%= render partial: "shared/like", locals: {post: @post, like: user_logged_in.liked_posts.include?(@post)} %>
 <%= @post.likes_count%>
+<%= link_to 'Edit Post', edit_post_path(@post) %>
 <%= button_to "Delete Post", @post, method: :delete, class: "button" %>

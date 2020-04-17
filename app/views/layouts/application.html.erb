@@ -13,14 +13,14 @@
     <div id="viewer" class="container-fluid">
     <div class="row">
       <div class="col-md-4 text-center">
-        <div><h1>🙏 Thankful-e</h1></div>
+        <div><h1> <%= link_to '🙏 Thankful-e', root_path %> </h1></div>
         <div id="nav">
           <ul>
-            <li><a href="/about">About Thankful-e</a></li>
+            <li><%= link_to 'About Thankful-e', about_path %></li>
             <li><%= link_to 'Thanks Digest', posts_path %></li>
             <% if logged_in? %>
               <li><%= link_to "My Thanks", user_posts_path(user_logged_in.id) %></li>
-              <li><a href="">Give Thanks</a></li>
+              <li><%= link_to "Give Thanks", new_post_path %></li>
               <li><%= link_to "Thanks I've 🙏", user_likes_path(user_logged_in.id) %></li>
               <li><%= link_to 'My Account', user_path(user_logged_in.id) %></li>
             <% else %>
@@ -33,10 +33,11 @@
         <span class="user_greeting_logout">
           <% if !logged_in? %> 
               <%= link_to 'Log In', login_path %>
+              <%= link_to 'Sign Up', new_user_path, class: "button"%>
             <% else %> 
               <%= link_to "Hi, #{user_logged_in.username}!", user_path(user_logged_in) %>
+              <%= button_to "Log Off", logout_path, class: "button" %>
             <% end %>
-          <%= button_to "Log Off", logout_path, class: "button" %>
         </span>
         <div id="main">
         <%= yield %>

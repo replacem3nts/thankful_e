@@ -1,2 +1,13 @@
 <h2>Thanks I've 🙏</h2>
-<%= render partial: "userposts", locals: {user: @user, posts: @posts} %>
+<% if user_logged_in == @user %>
+    <ul>
+        <% @posts.each do |p| %>
+            <li>
+                <%= render partial: 'shared/postpreview', locals: {post: p}%>
+            </li>
+        <% end %>
+    </ul>
+<% else %>
+    <p>You don't have permission to view this user's posts</p>
+    <% link_to "Back to All Thanks", posts_path %>
+<% end %>

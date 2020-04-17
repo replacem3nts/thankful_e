@@ -5,5 +5,5 @@
       <%= button_to "🙏", like_post_path, params: {"like[post_id]"=>post.id} %>
     <% end %>
 <% else %>
-      <%= button_to "🙏", login_path %>
+      <%= link_to "🙏", login_path %>
 <% end %>

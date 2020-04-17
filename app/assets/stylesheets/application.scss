@@ -7,7 +7,7 @@
 #viewer {
     background-color: #D0E0E4;
     color: #181F97;
-    padding-top: 1vw;
+    height: 100vh;
 }
 
 a {
@@ -42,11 +42,10 @@ h2 {
 
 #main {
     background-color: #F2F466;
-    margin-top: 6vh;
-    margin-bottom: 2vh;
-    margin-right: 2%;
-    padding: 20px;
-    height: 91vh;
+    margin-top: 60px;
+    margin-right: 4%;
+    padding: 40px;
+    height: calc(96vh - 60px);
 }
 
 #index_nav {
@@ -63,7 +62,7 @@ h2 {
     color: #181F97;
 }
 
-select {
+#index_nav select {
     display: inline-block;
 	font-size: 16px;
 	font-family: sans-serif;
@@ -94,6 +93,45 @@ select {
     height: 80%;
     overflow: auto;
 
+}
+
+#post_preview {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.profile_avatar img {
+    border-radius: 50%;
+    max-width: 150px;
+    height: auto;
+}
+
+#preview_avatar {
+    margin-left: 2em;
+}
+
+#preview_avatar img {
+    border-radius: 50%;
+    max-width: 4em;
+    height: auto;
+}
+
+#preview_content {
+    max-width: 60%;
+    margin-left: 2em;
+}
+
+#preview_likes {
+    display: flex;
+    max-width: 6em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+#preview_likes > *{
 }
 
 ul {

@@ -1,17 +1,16 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :location
+  belongs_to :category
   has_many :likes, dependent: :destroy
-  has_many :postcats, dependent: :destroy
-  has_many :categories, through: :postcats
   has_many :likers, through: :likes, source: :user
-  accepts_nested_attributes_for :categories
+  validates :title, :content, :location, presence: true
 
-  scope :sort_by_likes, -> {order('likes_count desc')}
-  scope :sort_by_newest, -> {order('created_at desc')}
-  scope :find_by_category, lambda {|category_id| joins(:postcats).where(['category_id = ?', category_id])}
-  scope :find_by_location, lambda {|location_id| where(['location_id = ?', location_id])}
-  scope :find_since_date, lambda {|created_at| where(['created_at > ?', created_at])}
+  scope :popular, -> {order('likes_count desc')}
+  scope :newest, -> {order('created_at desc')}
+  scope :find_by_category, lambda {|category_id| where(['category_id = ?', category_id]).limit(20)}
+  scope :find_by_location, lambda {|location_id| where(['location_id = ?', location_id]).limit(20)}
+  scope :find_since_date, lambda {|created_at| where(['created_at > ?', created_at]).limit(20)}
   
   @@finders = {
     'Since'=>:find_since_date,
@@ -19,8 +18,8 @@ class Post < ApplicationRecord
     'Category'=>:find_by_category,
   }
   @@sorters = {
-    'Likes'=>:sort_by_likes,
-    'Newest'=>:sort_by_newest
+    'Likes'=>:popular,
+    'Newest'=>:newest
   }
 
   def self.check_dates
@@ -37,19 +36,12 @@ class Post < ApplicationRecord
     Post.send(@@finders[finder], value).send(@@sorters[sorter])
   end
 
-  def category_attributes=(cat_attribs)
-    cat_attribs.values.each do |cat_attrib|
-      category = Category.find_or_create_by(cat_attrib)
-      self.categories << category
-    end
+  def category_name=(category)
+    self.category = Category.find_or_create_by(name: category)
   end
 
-  def post_like(user)
-    likes.where(user_id: user.id).first
-  end
-
-  def liked?(user)
-    !!post_like(user)
+  def category_name
+    self.category ? self.category.name : nil
   end
 
 end

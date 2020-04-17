@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authorize, only: [:edit]
+    before_action :authorize, only: [:edit, :details, :destroy]
+    before_action :get_user, except: [:new, :create]
 
     def new
         @user = User.new
@@ -10,7 +11,8 @@ class UsersController < ApplicationController
     def create
         user = User.create(user_params)
         if user.valid?
-            redirect_to user_path(user)
+            session[:user_id] = user.id
+            redirect_to details_path(user.id)
         else
             flash[:errors] = user.errors.full_messages
             redirect_to new_user_path
@@ -18,36 +20,43 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = get_user
     end
 
     def edit
-        @user = user_logged_in
+        @errors = flash[:errors]
     end
-
+    
     def update
+        user = @user.update(user_params)
+        if user
+            URI(request.referer).path == details_path(@user.id) ? (redirect_to user_path(@user)) : (redirect_to details_path(@user))
+        else
+            flash[:errors] = user.errors.full_messages
+            redirect_to edit_user_path(@user)
+        end
     end
-
+    
     def destroy
+        @user.destroy
+        redirect_to root_path
     end
-
-    def about
+    
+    def details
+        @locations = get_locations
     end
 
     def posts
-        @user = get_user
         @posts = @user.posts
     end
 
     def liked
-        @user = get_user
         @posts = @user.liked_posts
     end
 
     private
 
     def get_user
-        User.find(params[:id])
+        @user = User.find(params[:id])
     end
 
     def get_locations
@@ -55,6 +64,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:username, :email, :password, :location_id, :phone)
+        params.require(:user).permit(:username, :email, :password, :location_id, :phone, :bio, :website, :avatar)
     end
 end

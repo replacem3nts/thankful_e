@@ -1,2 +1,3 @@
 <h1>Amend Your Thanks</h1>
-<%= render 'form'%>
+<%= render partial: 'shared/errors', locals: {errors: @errors} %>
+<%= render partial: 'form', locals: {post: @post, user: @user, locations: @locations}%>

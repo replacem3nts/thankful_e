@@ -11,12 +11,7 @@
     <ul>
         <% @posts.each do |post| %>
             <li>
-                <span><%= link_to post.title, post_path(post) %><br>
-                <%= truncate(post.content, length: 75)%></span>
-                <span id="likes_count">
-                    <%= render partial: "like", locals: {post: post, like: user_logged_in.liked_posts.include?(post)} %>
-                    <%= post.likes_count %>
-                </span>
+                <%= render partial: 'shared/postpreview', locals: {post: post}%>
             </li>
         <% end %>
     </ul>

@@ -1,0 +1,29 @@
+<h2>Make Your Profile Spiffy!</h2>
+<% if @errors %>
+    <ul>
+        <% @errors.each do |e| %>
+            <li class="error" ><%= e %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with model: @user, local: true do |u| %>
+    <%= u.label :phone %>
+    <%= u.telephone_field :phone, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}" %><br>
+    <p class="form_note">We won't use this number except if you'd like to give thanks by texting us!</p>
+    <%= u.label :location_id, "State"%>
+    <%= u.collection_select :location_id, @locations, :id, :state, prompt: "Select a State" %><br>
+    <p class="form_note">Sets a default location for your thanks.</p>
+
+    <%= u.label :bio %>
+    <%= u.text_area :bio %><br>
+    <p class="form_note">Tell folks a bit about yourself.</p>
+
+    <%= u.label :website %>
+    <%= u.url_field :website %><br>
+
+    <%= u.label :avatar, "Profile Picture" %>
+    <%= u.file_field :avatar %><br>
+    
+    <%= u.submit "Update Details!"%>
+<% end %>

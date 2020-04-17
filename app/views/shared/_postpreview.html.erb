@@ -1,0 +1,14 @@
+<div id="post_preview">
+<div id="preview_avatar">
+     <%= image_tag post.user.avatar %>
+</div>
+<div id="preview_content">
+    <span class="post_intro"><%= time_ago_in_words(post.created_at).capitalize%> <%= post.user.username%> said...</span><br>
+    <span class="post_title"><%= link_to post.title, post_path(post) %><br></span>
+    <span class="content_preview"><%= truncate(post.content, length: 60)%></span>
+</div>
+<div id="preview_likes">
+    <%= render partial: "shared/like", locals: {post: post, like: (user_logged_in ? user_logged_in.liked_post?(post) : nil)} %>
+    <%= post.likes_count %>
+</div>
+</div>

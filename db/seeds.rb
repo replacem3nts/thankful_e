@@ -30,13 +30,9 @@ User.create(username: "The_Swedish_Chef", email: "swedechef@muppets.com", passwo
 User.create(username: "Sam_Eagle", email: "sam_e@muppets.com", password: "password123", location_id: rand(1..51), phone: Faker::PhoneNumber.cell_phone)
 
 30.times do
-    Post.create(title: "Thank you to the #{Faker::IndustrySegments.sub_sector.downcase} workers!!", user_id: rand(1..14), content: Faker::Hipster.paragraph(sentence_count: 4),private: Faker::Boolean.boolean(true_ratio: 0.1),location_id: rand(1..51))
+    Post.create(title: "Thank you to the #{Faker::IndustrySegments.sub_sector.downcase} workers!!", user_id: rand(1..14), content: Faker::Hipster.paragraph(sentence_count: 4), private: Faker::Boolean.boolean(true_ratio: 0.1),location_id: rand(1..51), category_id: rand(1..20))
 end
 
 100.times do
     Like.create(user_id: rand(1..14), post_id: rand(1..30))
-end
-
-45.times do
-    Postcat.create(category_id: rand(1..20), post_id: rand(1..30))
 end

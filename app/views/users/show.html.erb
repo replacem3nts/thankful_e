@@ -1,9 +1,14 @@
-
+<span class="profile_avatar"><%= image_tag(@user.avatar) %></span>
 <h2><%=@user.username%></h2>
+<span><%= @user.website%></span><br><br>
+<span>About <%=@user.username%><%= @user.bio%></span><br><br>
 
-<span>E-mail: <%= @user.email%></span><br><br>
-<span>Location: <%= @user.location.state %></span><br><br>
-<span>Telephone: <%= @user.phone%></span><br><br>
+<% if user_logged_in == @user %>
+        <span>E-mail: <%= @user.email%></span><br><br>
+        <span>Location: <%= @user.location.state %></span><br><br>
+        <span>Telephone: <%= @user.phone%></span><br><br>
 
-<%= link_to "Edit Your Account Info", edit_user_path(@user) %><br>
-<%= button_to "Delete Account", @user, method: "DELETE", class: "button"%>
+    <%= link_to "Edit Your Account", edit_user_path(@user) %><br>
+    <%= link_to "Update Your Profile", details_path(@user) %><br>
+    <%= button_to "Delete Account", @user, method: :delete, class: "button"%>
+<% end %>

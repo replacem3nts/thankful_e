@@ -16,6 +16,18 @@ class SessionsController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    redirect_to posts_path
+    redirect_to goodbye_path
+  end
+
+
+  def about
+  end
+
+  def welcome
+  end
+
+  def goodbye
+    sleep(3)
+    redirect_to root_path
   end
 end

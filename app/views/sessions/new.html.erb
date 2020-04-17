@@ -4,6 +4,7 @@
             <li class="error" ><%= @error %></li>
     </ul>
 <% end %>
+
 <%= form_tag "/login", method: "POST", class: 'form' do %>
     <%= label_tag :username%><br>
     <%= text_field_tag :username %><br><br>
