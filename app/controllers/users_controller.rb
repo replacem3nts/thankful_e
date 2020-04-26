@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     end
 
     def show
+        @calendar = @user.thirty_day_array
     end
 
     def edit

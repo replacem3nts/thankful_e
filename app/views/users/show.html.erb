@@ -4,24 +4,49 @@
         <h2><%=@user.username%></h2>
     </div>
     <div class="profile_body">
-        <h3>Public Info</h3>
         <div class="public_body">
             <span class="label">Website</span><%= link_to @user.website, @user.website %></span><br><br>
             <span class="label">Bio</span><span><%= @user.bio%></span>
         </div>
 
-        <h3>Private Info</h3>
-        <div class="private_body">
         <% if user_logged_in == @user %>
-            <span><span class="label">Location</span><%= @user.location.state %></span>
-            <span><span class="label">Telephone</span><%= @user.phone%></span><br><br>
-            <span><span class="label">E-mail</span><%= @user.email%></span>
-        </div>
-    </div>
-            <div class="profile_actions">
-                <%= link_to "Edit Your Account", edit_user_path(@user) %><br><br>
-                <%= link_to "Update Your Profile", details_path(@user) %><br><br>
-                <%= button_to "Delete Account", @user, method: :delete, class: "button"%>
+            <h3>Private Info</h3>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="private_body">
+                        <span><span class="label">Location</span><%= @user.location.state %></span>
+                        <span><span class="label">Telephone</span><%= @user.phone%></span><br><br>
+                        <span><span class="label">E-mail</span><%= @user.email%></span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                        <table id="post_calendar">
+                            <thead>
+                                <tr>
+                                    <th colspan="10">My Thanks Last 30 Days</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @calendar.each do |row| %>
+                                <tr>
+                                    <% row.each do |d| %>
+                                        <td>
+                                            <%= d %>
+                                        </td>
+                                    <% end %>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="profile_actions">
+                    <%= link_to "Edit Your Account", edit_user_path(@user) %><br><br>
+                    <%= link_to "Update Your Profile", details_path(@user) %><br><br>
+                    <%= button_to "Delete Account", @user, method: :delete, class: "button"%>
+                </div>
             </div>
         <% end %>
+    </div>
 </div>
