@@ -23,6 +23,9 @@ class SessionsController < ApplicationController
   def about
   end
 
+  def map
+  end
+
   def welcome
   end
 

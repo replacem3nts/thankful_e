@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'sessions#welcome'
   get '/about', to: 'sessions#about'
+  get '/map', to: 'sessions#map'
   get '/goodbye', to: 'sessions#goodbye'
   resources :posts
   resources :users, except: [:index]
